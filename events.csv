@@ -1,0 +1,46 @@
+Timestamp,Action,Source,CurrentLevel
+
+2026-11-04T22:07:24.585950+00:00,step_up,doctor,Level 1
+2026-11-04T22:07:26.494892+00:00,step_down,doctor,Baseline
+2026-11-04T22:07:28.013109+00:00,toggle_mode,doctor,Baseline
+2026-11-04T22:07:29.636104+00:00,toggle_mode,doctor,Baseline
+2026-11-04T22:07:31.085003+00:00,pause,doctor,Paused
+2026-11-04T22:07:32.084831+00:00,pause,doctor,Paused
+2026-11-04T22:07:33.068443+00:00,resume,doctor,Baseline
+2026-11-04T22:07:35.651783+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:21.698777+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:22.700907+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:23.467119+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:24.117831+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:24.373667+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:24.642364+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:24.924646+00:00,end_session,doctor,Session Complete
+2026-11-04T22:09:25.134265+00:00,end_session,doctor,Session Complete
+2026-11-04T23:35:27.190576+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-04T23:35:32.235542+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-04T23:37:23.999744+00:00,step_up,doctor,Level 1
+2026-11-04T23:37:24.003339+00:00,step_up,doctor,Level 2
+2026-11-04T23:37:29.505185+00:00,step_down,doctor,Level 1
+2026-11-04T23:37:29.513333+00:00,step_down,doctor,Baseline
+2026-11-04T23:37:36.243706+00:00,step_up,doctor,Level 1
+2026-11-04T23:37:36.252185+00:00,step_up,doctor,Level 2
+2026-11-04T23:37:50.258591+00:00,pause,doctor,Paused
+2026-11-04T23:37:50.265829+00:00,pause,doctor,Paused
+2026-11-04T23:37:52.919725+00:00,resume,doctor,Baseline
+2026-11-04T23:37:52.924587+00:00,resume,doctor,Baseline
+2026-11-05T00:48:46.630236+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:46.632399+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:47.911440+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:47.913581+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:49.408679+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:49.410791+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:50.310486+00:00,toggle_mode,doctor,Baseline
+2026-11-05T00:48:50.312636+00:00,toggle_mode,doctor,Baseline
+2026-11-05T01:33:19.290365+00:00,pause,doctor,Paused
+2026-11-05T01:33:19.295125+00:00,pause,doctor,Paused
+2026-11-05T01:35:25.108686+00:00,resume,doctor,Baseline
+2026-11-05T01:35:25.115795+00:00,resume,doctor,Baseline
+2026-11-05T01:35:25.915147+00:00,pause,doctor,Paused
+2026-11-05T01:35:25.921895+00:00,pause,doctor,Paused
+2026-11-05T01:35:40.476341+00:00,resume,doctor,Baseline
+2026-11-05T01:35:40.480531+00:00,resume,doctor,Baseline

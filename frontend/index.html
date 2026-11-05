@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liber8 — Premium Clinical Exposure Dashboard</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            ocean: {
+              950: '#06141d',
+              900: '#09202e',
+              850: '#0a1a29',
+              800: '#0a1128',
+              accent: '#2bf0af',
+              amber: '#fbbf24',
+              coral: '#ff5c5c',
+              cyan: '#06b6d4',
+            }
+          }
+        },
+      },
+    };
+  </script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ------------------------------------------------------------------ */
+    /* Oceanic Glassmorphism & Custom Styling                             */
+    /* ------------------------------------------------------------------ */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .font-mono-numbers {
+      font-family: 'JetBrains Mono', monospace;
+      font-feature-settings: 'tnum' on, 'zero' on;
+    }
+
+    /* Ultra-Premium Glassmorphic Surfaces */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.035);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      border-radius: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .glass-panel-chart {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Glowing button styling */
+    .btn-capsule {
+      backdrop-filter: blur(12px);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-capsule:active {
+      transform: scale(0.97);
+    }
+
+    /* Heartbeat animation */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.12); }
+      70% { transform: scale(1); }
+    }
+    .anim-heartbeat {
+      animation: heartbeat 1.25s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    /* Subtle pulse on alert cards */
+    @keyframes alertPulseGlow {
+      0%, 100% {
+        border-color: rgba(255, 92, 92, 0.3);
+        box-shadow: 0 0 20px rgba(255, 92, 92, 0.15);
+      }
+      50% {
+        border-color: rgba(255, 92, 92, 0.7);
+        box-shadow: 0 0 35px rgba(255, 92, 92, 0.35);
+      }
+    }
+    .panic-card-active {
+      animation: alertPulseGlow 1.4s infinite ease-in-out;
+    }
+
+    /* Custom scrollbar for glass look */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(6, 20, 29, 0.8);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-[#06141d] via-[#09202e] to-[#0a1128] min-h-screen text-slate-100 relative overflow-x-hidden antialiased">
+
+  <!-- ================================================================== -->
+  <!-- FUTURISTIC AURORA GLOW ORBS (Background Lighting)                    -->
+  <!-- ================================================================== -->
+  <div class="absolute top-10 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="absolute top-1/3 right-1/4 w-[30rem] h-[30rem] bg-cyan-600/5 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+  <!-- Main Container -->
+  <div class="max-w-7xl mx-auto p-4 md:p-6 lg:p-8 flex flex-col gap-6">
+
+    <!-- ================================================================== -->
+    <!-- HEADER & PATIENT PROFILE HERO BAR                                  -->
+    <!-- ================================================================== -->
+    <header class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      
+      <!-- Brand & Platform Identity -->
+      <div class="flex items-center gap-4">
+        <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-400/20 via-cyan-500/20 to-indigo-600/30 border border-teal-400/30 shadow-[0_0_20px_rgba(43,240,175,0.2)]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.75 3.75A6 6 0 0 1 21 9.75c0 2.19-.74 4.21-2 5.81V18a2.25 2.25 0 0 1-2.25 2.25h-9A2.25 2.25 0 0 1 5.5 18v-2.44A9.72 9.72 0 0 1 3.75 9.75 6 6 0 0 1 9.75 3.75Z" />
+          </svg>
+          <span class="absolute -bottom-1 -right-1 w-3 h-3 bg-teal-400 rounded-full border-2 border-[#09202e] shadow-[0_0_8px_#2bf0af]"></span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-teal-200 bg-clip-text text-transparent">
+              Liber8
+            </h1>
+            <span class="px-2 py-0.5 text-[10px] uppercase font-bold tracking-widest text-teal-300 bg-teal-500/10 border border-teal-500/20 rounded-full">
+              CLINICAL v2.0
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 font-medium">VR Exposure Therapy · Biometric Biofeedback Console</p>
+        </div>
+      </div>
+
+      <!-- Patient Profile Hero Card -->
+      <div class="glass-card !p-4 flex flex-wrap items-center gap-5 sm:gap-6">
+        
+        <!-- Subject Avatar & ID -->
+        <div class="flex items-center gap-3">
+          <div class="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-md shadow-cyan-900/40">
+            <span>S</span>
+            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#06141d] animate-pulse shadow-[0_0_10px_#10b981]"></span>
+          </div>
+          <div>
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Patient Subject</p>
+            <p class="text-sm font-bold text-white font-mono-numbers tracking-wide">WESAD-S15</p>
+          </div>
+        </div>
+
+        <div class="hidden sm:block h-8 w-px bg-white/10"></div>
+
+        <!-- Session Elapsed Timer -->
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Session Elapsed</p>
+          <p id="elapsed-time" class="text-sm font-bold text-cyan-300 font-mono-numbers">00:00</p>
+        </div>
+
+        <div class="hidden sm:block h-8 w-px bg-white/10"></div>
+
+        <!-- VR Link Status -->
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">VR Telemetry Link</p>
+          <div class="flex items-center gap-2">
+            <span id="live-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_#10b981]"></span>
+            <span id="vr-status" class="text-xs font-bold text-emerald-400 font-mono-numbers">SYNCHRONIZED</span>
+          </div>
+        </div>
+
+        <div class="hidden sm:block h-8 w-px bg-white/10"></div>
+
+        <!-- Mode Badge Indicator -->
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Control Mode</p>
+          <span id="mode-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-mono-numbers bg-teal-500/15 border border-teal-500/40 text-teal-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span>
+            AUTO
+          </span>
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- ================================================================== -->
+    <!-- ROW 1 — LIVE TELEMETRY CARDS (Heart Rate, EDA, AI Stress)          -->
+    <!-- ================================================================== -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+      <!-- 1. HEART RATE (BPM) CARD -->
+      <div class="glass-card relative overflow-hidden flex flex-col justify-between">
+        <!-- Background subtle glow -->
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="flex items-start justify-between relative z-10">
+          <div>
+            <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">Heart Rate</span>
+            <p class="text-xs text-slate-500 mt-0.5">Cardiac Frequency</p>
+          </div>
+          <!-- Animated Heart Icon -->
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+            <svg id="heart-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#2bf0af] anim-heartbeat" viewBox="0 0 24 24" fill="currentColor">
+              <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Metric Reading -->
+        <div class="my-3 flex items-baseline gap-2 relative z-10">
+          <span id="hr-value" class="font-mono-numbers text-5xl font-bold text-[#2bf0af] drop-shadow-[0_0_12px_rgba(43,240,175,0.35)]">
+            72
+          </span>
+          <span class="text-sm font-semibold text-emerald-400/80 font-mono-numbers">BPM</span>
+        </div>
+
+        <!-- Custom SVG Cardiac Waveform -->
+        <div class="relative z-10 mt-1">
+          <svg class="w-full h-9 text-[#2bf0af] opacity-60 filter drop-shadow-[0_0_4px_rgba(43,240,175,0.4)]" viewBox="0 0 220 36" fill="none">
+            <path d="M0 18 H40 L48 6 L56 30 L64 10 L72 24 L80 18 H120 L128 6 L136 30 L144 10 L152 24 L160 18 H220" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-1">
+            <span>Resting: 60-80</span>
+            <span class="text-emerald-400">Normal Range</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. EDA (µS) CARD -->
+      <div class="glass-card relative overflow-hidden flex flex-col justify-between">
+        <!-- Background subtle glow -->
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="flex items-start justify-between relative z-10">
+          <div>
+            <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">EDA / Galvanic</span>
+            <p class="text-xs text-slate-500 mt-0.5">Skin Conductance</p>
+          </div>
+          <!-- Waveform Icon -->
+          <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#fbbf24]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Metric Reading -->
+        <div class="my-3 flex items-baseline gap-2 relative z-10">
+          <span id="eda-value" class="font-mono-numbers text-5xl font-bold text-[#fbbf24] drop-shadow-[0_0_12px_rgba(251,191,36,0.35)]">
+            2.50
+          </span>
+          <span class="text-sm font-semibold text-amber-300/80 font-mono-numbers">µS</span>
+        </div>
+
+        <!-- Stylized Conductance Waveform -->
+        <div class="relative z-10 mt-1">
+          <svg class="w-full h-9 text-[#fbbf24] opacity-60 filter drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]" viewBox="0 0 220 36" fill="none">
+            <path d="M0 24 C25 24 40 8 70 12 C100 16 115 28 145 20 C170 14 195 18 220 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-1">
+            <span>Baseline: 1.0 - 5.0</span>
+            <span class="text-amber-400">Phasic Responsive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. AI STRESS SCORE CARD -->
+      <div id="stress-card" class="glass-card relative overflow-hidden flex flex-col justify-between">
+        <!-- Background subtle glow -->
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="flex items-start justify-between relative z-10">
+          <div>
+            <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">AI Stress Score</span>
+            <p class="text-xs text-slate-500 mt-0.5">Fusion Biomarker Model</p>
+          </div>
+          <!-- Arc / Neural Badge Icon -->
+          <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#ff5c5c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Metric Reading & Visual Arc Sweep -->
+        <div class="my-3 flex items-center justify-between relative z-10">
+          <div class="flex items-baseline gap-2">
+            <span id="stress-value" class="font-mono-numbers text-5xl font-bold text-[#ff5c5c] drop-shadow-[0_0_12px_rgba(255,92,92,0.35)]">
+              0.20
+            </span>
+            <span class="text-sm font-semibold text-rose-300/80 font-mono-numbers">/ 1.00</span>
+          </div>
+
+          <!-- Circular SVG Radial Visual Indicator -->
+          <div class="relative w-14 h-14 flex items-center justify-center">
+            <svg class="w-14 h-14 -rotate-90" viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="19" stroke="rgba(255,255,255,0.08)" stroke-width="4" fill="none" />
+              <circle id="stress-arc" cx="24" cy="24" r="19" stroke="url(#arc-gradient)" stroke-width="4" fill="none"
+                stroke-dasharray="119.38" stroke-dashoffset="95.5" stroke-linecap="round"
+                class="transition-all duration-500 ease-out" />
+              <defs>
+                <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2bf0af" />
+                  <stop offset="50%" stop-color="#fbbf24" />
+                  <stop offset="100%" stop-color="#ff5c5c" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span id="stress-level-label" class="absolute text-[10px] font-bold font-mono-numbers text-teal-300">LOW</span>
+          </div>
+        </div>
+
+        <!-- Threshold context line -->
+        <div class="relative z-10 flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers">
+          <span>Panic Floor: &ge; 0.85</span>
+          <span id="stress-status-tag" class="text-teal-400 font-semibold">STABLE</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- ROW 2 — VIRTUAL ENVIRONMENT & EXPOSURE LEVEL BANNER                -->
+    <!-- ================================================================== -->
+    <div class="glass-card flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-4 px-6">
+      
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-300 shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+          </svg>
+        </div>
+        <div>
+          <p class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Current Exposure Level</p>
+          <p id="level-text" class="text-xl md:text-2xl font-bold tracking-tight text-white font-mono-numbers">
+            Baseline
+          </p>
+        </div>
+      </div>
+
+      <!-- Environment Hierarchy Stage Pills -->
+      <div class="flex items-center gap-2 overflow-x-auto py-1 max-w-full">
+        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-teal-500/20 text-teal-300 border border-teal-500/40">Baseline</span>
+        <span class="text-slate-600 text-xs">&rarr;</span>
+        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 1</span>
+        <span class="text-slate-600 text-xs">&rarr;</span>
+        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 2</span>
+        <span class="text-slate-600 text-xs">&rarr;</span>
+        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 3</span>
+        <span class="text-slate-600 text-xs">&rarr;</span>
+        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 4</span>
+        <span class="text-slate-600 text-xs">&rarr;</span>
+        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 5</span>
+      </div>
+
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- ROW 3 — REAL-TIME TRACKING (CHARTS)                                -->
+    <!-- ================================================================== -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+      <!-- Heart Rate Chart Panel -->
+      <div class="glass-card glass-panel-chart flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#2bf0af] shadow-[0_0_8px_#2bf0af]"></span>
+            <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">HEART RATE (BPM)</span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono-numbers bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
+            Rolling 60s
+          </span>
+        </div>
+        <div class="relative h-52 w-full">
+          <canvas id="hr-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- EDA Chart Panel -->
+      <div class="glass-card glass-panel-chart flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#fbbf24] shadow-[0_0_8px_#fbbf24]"></span>
+            <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">ELECTRODERMAL ACTIVITY (µS)</span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-mono-numbers bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
+            Rolling 60s
+          </span>
+        </div>
+        <div class="relative h-52 w-full">
+          <canvas id="eda-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- ROW 4 — 5-SECOND SUSTAINED PANIC DETECTOR (Safety Timer)           -->
+    <!-- ================================================================== -->
+    <div class="glass-card p-5">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xs uppercase tracking-widest text-slate-200 font-bold">5-Second Sustained Panic Detector</h3>
+            <p class="text-[11px] text-slate-400">Automatic failsafe intervention trigger (&ge; 0.85 stress score)</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Duration:</span>
+          <span id="panic-seconds-label" class="font-mono-numbers text-sm font-bold text-slate-200 bg-white/5 border border-white/10 px-2.5 py-1 rounded-lg">
+            0 / 5s
+          </span>
+        </div>
+      </div>
+
+      <!-- Sleek Empty State Track -->
+      <div class="h-3.5 w-full bg-[#ffffff0c] rounded-full overflow-hidden p-0.5 border border-white/5 shadow-inner">
+        <!-- Glowing Multi-Layered Coral/Red-Orange Gradient Indicator -->
+        <div
+          id="panic-bar"
+          class="h-full rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-red-600 shadow-[0_0_12px_#ef4444] transition-all duration-300 ease-out"
+          style="width: 0%;"
+        ></div>
+      </div>
+
+      <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-2">
+        <span>0s (Normal)</span>
+        <span class="text-amber-400/80">3s (Warning)</span>
+        <span class="text-red-400 font-semibold">5s (Auto Step Down Triggered)</span>
+      </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- ROW 5 — CLINICIAN CONTROLS (Glossy Capsules & Toggle)             -->
+    <!-- ================================================================== -->
+    <div class="glass-card p-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-5 pb-4 border-b border-white/5">
+        <div>
+          <h2 class="text-sm uppercase tracking-widest text-white font-bold">Clinician Intervention Console</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Authoritative overrides and virtual exposure controls</p>
+        </div>
+
+        <!-- AUTO MODE Toggle Slider Style Button -->
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-semibold text-slate-400">System Mode:</span>
+          <button
+            id="mode-toggle"
+            onclick="sendCommand('toggle_mode')"
+            class="relative inline-flex items-center gap-2.5 px-4 py-2 rounded-full font-mono-numbers text-xs font-bold transition-all duration-300 bg-[#0c2838] border border-cyan-400/40 text-cyan-200 shadow-[0_0_15px_#06b6d4] hover:border-cyan-300"
+          >
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#06b6d4]"></span>
+            <span id="mode-toggle-text">AUTO MODE: ON</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons Grid / Capsules -->
+      <div class="flex flex-wrap items-center gap-3">
+
+        <!-- STEP UP Button -->
+        <button
+          id="btn-stepup"
+          onclick="sendCommand('step_up')"
+          class="btn-capsule flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers
+                 bg-white/5 border border-white/20 text-slate-100 hover:bg-white/10 hover:border-white/40 shadow-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+          </svg>
+          Step Up
+        </button>
+
+        <!-- STEP DOWN Button -->
+        <button
+          id="btn-stepdown"
+          onclick="sendCommand('step_down')"
+          class="btn-capsule flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers
+                 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 hover:border-emerald-400/50 shadow-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+          Step Down
+        </button>
+
+        <!-- PAUSE / INTERVENE Button -->
+        <button
+          id="btn-pause"
+          onclick="handlePauseResume()"
+          class="btn-capsule flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers
+                 bg-rose-500/10 border border-rose-500/40 text-rose-300 hover:bg-rose-500/20 hover:border-rose-400 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)] shadow-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+          </svg>
+          <span id="pause-btn-label">Pause / Intervene</span>
+        </button>
+
+        <!-- END SESSION Button -->
+        <button
+          id="btn-end"
+          onclick="sendCommand('end_session')"
+          class="btn-capsule flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers ml-auto
+                 bg-gradient-to-r from-red-600/30 to-rose-600/30 border border-red-500/50 text-red-200 hover:from-red-600/50 hover:to-rose-600/50 hover:border-red-400 hover:shadow-[0_0_18px_rgba(239,68,68,0.35)]"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 12.728M5.636 5.636a9 9 0 1 1 12.728 12.728M5.636 5.636 12 12m0 0 6.364 6.364" />
+          </svg>
+          End Session
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- POST-SESSION REPORT & DIGITAL STAI (Hidden Until Session Complete) -->
+    <!-- ================================================================== -->
+    <div
+      id="post-session-report"
+      class="hidden transition-all duration-700 ease-out transform opacity-0 translate-y-8"
+    >
+      <div class="glass-card border border-teal-500/30 shadow-[0_0_40px_rgba(6,182,212,0.15)] p-6 md:p-8">
+
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shadow-[0_0_15px_rgba(43,240,175,0.25)]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" />
+              </svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-xl font-bold text-white tracking-tight">Clinical Post-Session Report</h2>
+                <span class="text-[10px] font-mono-numbers uppercase tracking-wider font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  SESSION CONCLUDED
+                </span>
+              </div>
+              <p class="text-xs text-slate-400">Subject: <span class="font-mono-numbers text-teal-300 font-semibold">WESAD-S15</span> · Digital STAI Assessment</p>
+            </div>
+          </div>
+
+          <div class="text-right">
+            <span class="text-xs text-slate-400 block">Report ID</span>
+            <span class="text-xs font-mono-numbers text-slate-200">#EXP-2026-S15-FINAL</span>
+          </div>
+        </div>
+
+        <p class="text-sm text-slate-300 my-5 leading-relaxed">
+          The exposure trial has terminated. Please document the patient’s psychological recovery status using the validated
+          <strong class="text-white">State-Trait Anxiety Inventory (STAI Form Y-1)</strong>.
+          Scale: <span class="text-teal-300 font-semibold">1 (Not at all)</span> to <span class="text-rose-300 font-semibold">4 (Very much so)</span>.
+        </p>
+
+        <!-- STAI Questionnaire Grid -->
+        <form id="stai-form" class="space-y-4" onsubmit="submitSTAI(event)">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            <!-- Item 1 -->
+            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
+              <label class="block text-xs font-medium text-slate-300 mb-2">1. I feel calm.</label>
+              <select name="stai_1" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
+                <option value="">— Select Rating —</option>
+                <option value="1">1 — Not at all</option>
+                <option value="2">2 — Somewhat</option>
+                <option value="3">3 — Moderately so</option>
+                <option value="4">4 — Very much so</option>
+              </select>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
+              <label class="block text-xs font-medium text-slate-300 mb-2">2. I feel secure.</label>
+              <select name="stai_2" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
+                <option value="">— Select Rating —</option>
+                <option value="1">1 — Not at all</option>
+                <option value="2">2 — Somewhat</option>
+                <option value="3">3 — Moderately so</option>
+                <option value="4">4 — Very much so</option>
+              </select>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
+              <label class="block text-xs font-medium text-slate-300 mb-2">3. I feel tense.</label>
+              <select name="stai_3" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
+                <option value="">— Select Rating —</option>
+                <option value="1">1 — Not at all</option>
+                <option value="2">2 — Somewhat</option>
+                <option value="3">3 — Moderately so</option>
+                <option value="4">4 — Very much so</option>
+              </select>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
+              <label class="block text-xs font-medium text-slate-300 mb-2">4. I feel strained.</label>
+              <select name="stai_4" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
+                <option value="">— Select Rating —</option>
+                <option value="1">1 — Not at all</option>
+                <option value="2">2 — Somewhat</option>
+                <option value="3">3 — Moderately so</option>
+                <option value="4">4 — Very much so</option>
+              </select>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
+              <label class="block text-xs font-medium text-slate-300 mb-2">5. I feel at ease.</label>
+              <select name="stai_5" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
+                <option value="">— Select Rating —</option>
+                <option value="1">1 — Not at all</option>
+                <option value="2">2 — Somewhat</option>
+                <option value="3">3 — Moderately so</option>
+                <option value="4">4 — Very much so</option>
+              </select>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
+              <label class="block text-xs font-medium text-slate-300 mb-2">6. I feel frightened.</label>
+              <select name="stai_6" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
+                <option value="">— Select Rating —</option>
+                <option value="1">1 — Not at all</option>
+                <option value="2">2 — Somewhat</option>
+                <option value="3">3 — Moderately so</option>
+                <option value="4">4 — Very much so</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+            <button
+              type="submit"
+              class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-bold text-xs uppercase font-mono-numbers tracking-wide transition-all shadow-[0_0_20px_rgba(43,240,175,0.4)]"
+            >
+              Sign &amp; Archive Session Log
+            </button>
+          </div>
+        </form>
+
+        <!-- Submission confirmation banner -->
+        <div id="stai-submitted" class="hidden mt-5 p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center gap-3">
+          <div class="w-6 h-6 rounded-full bg-teal-400 text-slate-900 flex items-center justify-center font-bold text-xs">✓</div>
+          <div>
+            <p class="text-xs font-bold text-teal-300 font-mono-numbers">SESSION CERTIFIED &amp; RECORD COMMITTED</p>
+            <p class="text-[11px] text-slate-400">Post-exposure STAI metrics appended to events.csv and session telemetry archive.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================================================================== -->
+    <!-- FOOTER                                                               -->
+    <!-- ================================================================== -->
+    <footer class="text-center text-xs text-slate-500/80 py-2 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+        <span>Liber8 VR Exposure Therapy Platform</span>
+      </div>
+      <div>Subject: <span class="font-mono-numbers text-slate-400">WESAD-S15</span> · Real-Time Failsafe Engine Active</div>
+      <div class="font-mono-numbers text-[11px]">Polling 1000ms</div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
