@@ -44,3 +44,63 @@ Timestamp,Action,Source,CurrentLevel
 2026-11-05T01:35:25.921895+00:00,pause,doctor,Paused
 2026-11-05T01:35:40.476341+00:00,resume,doctor,Baseline
 2026-11-05T01:35:40.480531+00:00,resume,doctor,Baseline
+2026-11-05T02:53:15.048766+00:00,baseline_established,auto,Baseline
+2026-11-05T02:53:15.049120+00:00,step_up,doctor,Level 1
+2026-11-05T02:53:15.049309+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T02:53:15.049547+00:00,sensor_recovered,auto,Level 1
+2026-11-05T02:53:15.049793+00:00,pause,doctor,Safe Room: Beautiful Scenery
+2026-11-05T02:53:15.050010+00:00,resume,doctor,Level 1
+2026-11-05T02:53:15.050328+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T03:05:19.982331+00:00,baseline_established,auto,Baseline
+2026-11-05T03:06:11.853523+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T03:06:14.917694+00:00,sensor_recovered,auto,Baseline
+2026-11-05T03:07:17.087142+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T03:07:22.188528+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T03:09:41.045727+00:00,baseline_established,auto,Baseline
+2026-11-05T03:10:05.294052+00:00,step_up,doctor,Level 1
+2026-11-05T03:10:32.282718+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T03:10:35.299626+00:00,sensor_recovered,auto,Level 1
+2026-11-05T03:10:57.563903+00:00,step_up,doctor,Level 2
+2026-11-05T03:11:36.581552+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T03:11:41.604848+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T03:12:13.693240+00:00,end_session,doctor,Session Complete
+2026-11-05T03:13:12.236654+00:00,baseline_established,auto,Baseline
+2026-11-05T03:13:43.241207+00:00,step_up,doctor,Level 1
+2026-11-05T03:14:09.493242+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T03:14:12.511011+00:00,sensor_recovered,auto,Level 1
+2026-11-05T03:14:32.561817+00:00,step_up,doctor,Level 2
+2026-11-05T03:15:13.788560+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T03:15:18.809757+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T10:00:08.406366+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T10:00:11.416814+00:00,sensor_recovered,auto,Step Down Triggered
+2026-11-05T10:01:12.660366+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T10:01:17.679882+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T10:50:02.451696+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T12:44:08.334283+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:23.289454+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:24.059877+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:24.274568+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:24.416602+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:24.607415+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:24.751795+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:24.914596+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:25.081453+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:25.236738+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.013599+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.195193+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.362980+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.500778+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.685631+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.810161+00:00,end_session,doctor,Session Complete
+2026-11-05T12:45:26.946715+00:00,end_session,doctor,Session Complete
+2026-11-05T13:58:32.360020+00:00,baseline_established,auto,Baseline
+2026-11-05T14:04:09.961765+00:00,end_session,doctor,Session Complete
+2026-11-05T15:00:32.877335+00:00,baseline_established,auto,Baseline
+2026-11-05T15:01:27.696641+00:00,step_up,doctor,Level 1
+2026-11-05T15:01:34.955427+00:00,sensor_fault_fallback,auto,Safe Room: Beautiful Scenery
+2026-11-05T15:01:46.139341+00:00,sensor_recovered,auto,Level 1
+2026-11-05T15:02:02.122071+00:00,step_up,doctor,Level 2
+2026-11-05T15:02:21.127929+00:00,step_up,doctor,Level 3
+2026-11-05T15:02:57.421699+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T15:03:02.495284+00:00,auto_step_down,auto,Step Down Triggered
+2026-11-05T15:03:23.605679+00:00,end_session,doctor,Session Complete

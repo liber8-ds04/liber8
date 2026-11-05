@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liber8 — Premium Clinical Exposure Dashboard</title>
+  <title>Liber8 — Clinical VR Exposure Therapy System</title>
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,7 +30,7 @@
               900: '#09202e',
               850: '#0a1a29',
               800: '#0a1128',
-              accent: '#2bf0af',
+              emerald: '#2bf0af',
               amber: '#fbbf24',
               coral: '#ff5c5c',
               cyan: '#06b6d4',
@@ -46,7 +46,7 @@
 
   <style>
     /* ------------------------------------------------------------------ */
-    /* Oceanic Glassmorphism & Custom Styling                             */
+    /* Oceanic Glassmorphism & High-End Clinical Aesthetics               */
     /* ------------------------------------------------------------------ */
     body {
       font-family: 'Inter', sans-serif;
@@ -57,30 +57,32 @@
       font-feature-settings: 'tnum' on, 'zero' on;
     }
 
-    /* Ultra-Premium Glassmorphic Surfaces */
+    /* Ultra-Responsive Glass Cards */
     .glass-card {
-      background: rgba(255, 255, 255, 0.035);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      border-radius: 1rem;
+      border-radius: 1.5rem; /* rounded-3xl */
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .glass-card:hover {
-      border-color: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.20);
+      box-shadow: 0 8px 32px 0 rgba(6, 182, 212, 0.15);
     }
 
     .glass-panel-chart {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.025);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
 
-    /* Glowing button styling */
+    /* Capsule Button Styling */
     .btn-capsule {
+      position: relative;
+      overflow: hidden;
       backdrop-filter: blur(12px);
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -88,35 +90,68 @@
       transform: scale(0.97);
     }
 
-    /* Heartbeat animation */
+    /* Ripple Click Effect */
+    .ripple-wave {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Cardiac Heartbeat Pulse Animation */
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
-      14% { transform: scale(1.15); }
+      14% { transform: scale(1.18); }
       28% { transform: scale(1); }
       42% { transform: scale(1.12); }
       70% { transform: scale(1); }
     }
     .anim-heartbeat {
-      animation: heartbeat 1.25s infinite ease-in-out;
+      animation: heartbeat 1.2s infinite ease-in-out;
       transform-origin: center;
     }
 
-    /* Subtle pulse on alert cards */
+    /* Panic Pulsing Glow */
     @keyframes alertPulseGlow {
       0%, 100% {
-        border-color: rgba(255, 92, 92, 0.3);
-        box-shadow: 0 0 20px rgba(255, 92, 92, 0.15);
+        border-color: rgba(255, 92, 92, 0.35);
+        box-shadow: 0 0 20px rgba(255, 92, 92, 0.2);
       }
       50% {
-        border-color: rgba(255, 92, 92, 0.7);
-        box-shadow: 0 0 35px rgba(255, 92, 92, 0.35);
+        border-color: rgba(255, 92, 92, 0.85);
+        box-shadow: 0 0 35px rgba(255, 92, 92, 0.45);
       }
     }
     .panic-card-active {
-      animation: alertPulseGlow 1.4s infinite ease-in-out;
+      animation: alertPulseGlow 1.2s infinite ease-in-out;
     }
 
-    /* Custom scrollbar for glass look */
+    /* Step-Up Soft Teal Recommendation Aura */
+    @keyframes tealAuraPulse {
+      0%, 100% {
+        box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+        border-color: rgba(6, 182, 212, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+        border-color: rgba(43, 240, 175, 0.9);
+      }
+    }
+    .stepup-recommended-glow {
+      animation: tealAuraPulse 1.5s infinite ease-in-out !important;
+      background: rgba(6, 182, 212, 0.18) !important;
+      color: #a5f3fc !important;
+    }
+
+    /* Custom Glass Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -125,11 +160,11 @@
       background: rgba(6, 20, 29, 0.8);
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.16);
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.32);
     }
   </style>
 </head>
@@ -137,23 +172,772 @@
 <body class="bg-gradient-to-br from-[#06141d] via-[#09202e] to-[#0a1128] min-h-screen text-slate-100 relative overflow-x-hidden antialiased">
 
   <!-- ================================================================== -->
-  <!-- FUTURISTIC AURORA GLOW ORBS (Background Lighting)                    -->
+  <!-- ATMOSPHERIC BACKGROUND AURORA BLUR ELEMENTS                        -->
   <!-- ================================================================== -->
-  <div class="absolute top-10 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-  <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-  <div class="absolute top-1/3 right-1/4 w-[30rem] h-[30rem] bg-cyan-600/5 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed top-10 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-10 right-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="fixed top-1/3 right-1/4 w-[32rem] h-[32rem] bg-cyan-600/5 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
-  <!-- Main Container -->
-  <div class="max-w-7xl mx-auto p-4 md:p-6 lg:p-8 flex flex-col gap-6">
+  <!-- ################################################################## -->
+  <!-- SECTION A: WELCOME SCREEN (Cinematic Landing Page)                 -->
+  <!-- ################################################################## -->
+  <section id="section-welcome" class="min-h-screen flex items-center justify-center p-6 md:p-12 relative z-10">
+    <div class="max-w-4xl w-full flex flex-col items-center text-center">
+      
+      <!-- Ambient Brand Glow Badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 mb-8 shadow-[0_0_20px_rgba(43,240,175,0.2)]">
+        <span class="w-2 h-2 rounded-full bg-teal-400 animate-ping"></span>
+        <span class="text-xs uppercase font-extrabold tracking-widest font-mono-numbers">Clinical VR Biofeedback Platform · Nov 10 Trial Build</span>
+      </div>
 
-    <!-- ================================================================== -->
-    <!-- HEADER & PATIENT PROFILE HERO BAR                                  -->
-    <!-- ================================================================== -->
+      <!-- Hero Visual Icon -->
+      <div class="relative w-24 h-24 mb-6 rounded-3xl bg-gradient-to-br from-teal-400/25 via-cyan-500/20 to-indigo-600/35 border border-teal-400/40 flex items-center justify-center shadow-[0_0_40px_rgba(43,240,175,0.35)]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9.75 3.75A6 6 0 0 1 21 9.75c0 2.19-.74 4.21-2 5.81V18a2.25 2.25 0 0 1-2.25 2.25h-9A2.25 2.25 0 0 1 5.5 18v-2.44A9.72 9.72 0 0 1 3.75 9.75 6 6 0 0 1 9.75 3.75Z" />
+        </svg>
+        <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-teal-400 rounded-full border-4 border-[#09202e] shadow-[0_0_12px_#2bf0af]"></span>
+      </div>
+
+      <!-- Hero Title -->
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+        <span class="bg-gradient-to-r from-white via-slate-100 to-teal-200 bg-clip-text text-transparent">
+          Liber8 Exposure Therapy
+        </span>
+      </h1>
+
+      <!-- Subtitle & Clinical Mission -->
+      <p class="text-base sm:text-xl text-slate-300 max-w-2xl mb-8 leading-relaxed font-normal">
+        Autonomous closed-loop biofeedback system synchronizing real-time autonomic physiology with adaptive VR phobic titration and automated clinical safe-room failsafes.
+      </p>
+
+      <!-- Architecture Feature Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full mb-10 max-w-3xl">
+        <div class="glass-card !p-5 text-left border-white/5">
+          <div class="w-8 h-8 rounded-lg bg-teal-500/10 text-teal-300 flex items-center justify-center mb-3">⚡</div>
+          <h4 class="text-sm font-bold text-white mb-1">Closed-Loop Failsafe</h4>
+          <p class="text-xs text-slate-400 leading-normal">5s sustained panic threshold triggers automatic step-down intervention.</p>
+        </div>
+        <div class="glass-card !p-5 text-left border-white/5">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-300 flex items-center justify-center mb-3">🧠</div>
+          <h4 class="text-sm font-bold text-white mb-1">30s Resting Calibration</h4>
+          <p class="text-xs text-slate-400 leading-normal">Calculates true physiological baseline to detect boredom and readiness.</p>
+        </div>
+        <div class="glass-card !p-5 text-left border-white/5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-300 flex items-center justify-center mb-3">🛡️</div>
+          <h4 class="text-sm font-bold text-white mb-1">Safe Room Fallback</h4>
+          <p class="text-xs text-slate-400 leading-normal">Electrode disconnection instantly routes patient to serene scenic environments.</p>
+        </div>
+      </div>
+
+      <!-- Primary CTA Button -->
+      <button
+        onclick="showCRUD()"
+        class="btn-capsule flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-extrabold text-sm sm:text-base tracking-wide font-mono-numbers shadow-[0_0_35px_rgba(43,240,175,0.4)] transition-all transform hover:scale-105"
+      >
+        <span>Enter Clinical Portal</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- ################################################################## -->
+  <!-- SECTION B: PATIENT MANAGEMENT (CRUD) SCREEN                        -->
+  <!-- ################################################################## -->
+  <section id="section-patient-mgmt" class="hidden min-h-screen p-4 md:p-8 lg:p-10 w-full flex flex-col gap-8 relative z-10">
+    
+    <!-- Header & Action Bar -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+      <div class="flex items-center gap-4">
+        <button
+          onclick="showWelcome()"
+          class="btn-capsule p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10"
+          title="Return to Welcome"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+        </button>
+        <div>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white">Patient Management Directory</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Clinical trial intake, biometric profiles, and exposure session routing</p>
+        </div>
+      </div>
+
+      <button
+        onclick="openPatientModal()"
+        class="btn-capsule flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-bold text-xs uppercase font-mono-numbers tracking-wide shadow-[0_0_20px_rgba(43,240,175,0.35)]"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        New Patient Profile
+      </button>
+    </div>
+
+    <!-- Directory Summary Strip -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="glass-card !p-5 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold font-mono-numbers">Enrolled Patients</p>
+          <p id="total-patients-count" class="text-2xl font-bold text-white font-mono-numbers mt-1">0</p>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-300 flex items-center justify-center font-mono-numbers font-bold">#PT</div>
+      </div>
+      <div class="glass-card !p-5 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold font-mono-numbers">Active VR Trial Protocol</p>
+          <p class="text-sm font-bold text-teal-300 font-mono-numbers mt-1">WESAD In-Vivo Desensitization</p>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-300 flex items-center justify-center">VR</div>
+      </div>
+      <div class="glass-card !p-5 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold font-mono-numbers">Telemetry Link Status</p>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-xs font-bold text-emerald-400 font-mono-numbers">SYSTEM READY (90 HZ)</span>
+          </div>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-300 flex items-center justify-center font-bold">OK</div>
+      </div>
+    </div>
+
+    <!-- Patient Grid Container -->
+    <div>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xs uppercase tracking-widest text-slate-400 font-extrabold font-mono-numbers">Select Patient to Launch VR Exposure Trial</h3>
+        <span class="text-xs text-slate-500 font-mono-numbers">Click card or Launch to trigger Pre-Flight Checklist</span>
+      </div>
+      
+      <div id="patient-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Dynamically injected via loadPatients() in app.js -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================================================================== -->
+  <!-- MODAL 1: "NEW / EDIT PATIENT" MODAL (Glassmorphic Modal Card)       -->
+  <!-- ================================================================== -->
+  <div id="patient-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md overflow-y-auto">
+    <div class="glass-card max-w-2xl w-full p-6 sm:p-8 my-8 border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+        <div>
+          <h3 id="patient-modal-title" class="text-xl font-bold text-white">Enroll New Patient Profile</h3>
+          <p id="patient-modal-desc" class="text-xs text-slate-400 mt-0.5">Clinical trial intake &amp; baseline anthropometrics</p>
+        </div>
+        <button
+          onclick="closePatientModal()"
+          class="btn-capsule p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Intake Form -->
+      <form id="new-patient-form" onsubmit="savePatient(event)" class="space-y-5">
+        <!-- Hidden Patient ID field for edit tracking -->
+        <input type="hidden" id="inp-patient-id" value="" />
+        
+        <!-- Row 1: Name & Age -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Full Name *</label>
+            <input
+              type="text"
+              id="inp-patient-name"
+              required
+              placeholder="e.g. Elena Rostova or Subject S16"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 transition-colors"
+            />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Age *</label>
+            <input
+              type="number"
+              id="inp-patient-age"
+              required
+              min="12"
+              max="110"
+              placeholder="28"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 transition-colors font-mono-numbers"
+            />
+          </div>
+        </div>
+
+        <!-- Row 2: Gender & Dominant Hand -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Gender *</label>
+            <select
+              id="inp-patient-gender"
+              required
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400 transition-colors"
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Non-Binary">Non-Binary</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Dominant Hand *</label>
+            <select
+              id="inp-patient-hand"
+              required
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400 transition-colors"
+            >
+              <option value="Right">Right Handed</option>
+              <option value="Left">Left Handed</option>
+              <option value="Ambidextrous">Ambidextrous</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 3: Height (Dual Unit Toggle) -->
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-semibold text-slate-300">Height</label>
+            <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-[11px] font-mono-numbers">
+              <button
+                type="button"
+                id="btn-height-cm"
+                onclick="toggleHeightUnit('cm')"
+                class="px-2.5 py-0.5 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+              >cm</button>
+              <button
+                type="button"
+                id="btn-height-ft"
+                onclick="toggleHeightUnit('ft')"
+                class="px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition-all"
+              >ft/in</button>
+            </div>
+          </div>
+          <!-- Metric cm input -->
+          <div id="wrap-height-cm">
+            <input
+              type="number"
+              id="inp-height-cm"
+              placeholder="e.g. 175"
+              min="50"
+              max="250"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 font-mono-numbers"
+            />
+          </div>
+          <!-- Imperial ft/in input -->
+          <div id="wrap-height-ft" class="hidden grid grid-cols-2 gap-3">
+            <input
+              type="number"
+              id="inp-height-ft"
+              placeholder="Feet (e.g. 5)"
+              min="2"
+              max="8"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 font-mono-numbers"
+            />
+            <input
+              type="number"
+              id="inp-height-in"
+              placeholder="Inches (e.g. 9)"
+              min="0"
+              max="11"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 font-mono-numbers"
+            />
+          </div>
+        </div>
+
+        <!-- Row 4: Weight (Dual Unit Toggle) -->
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-xs font-semibold text-slate-300">Weight</label>
+            <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-[11px] font-mono-numbers">
+              <button
+                type="button"
+                id="btn-weight-kg"
+                onclick="toggleWeightUnit('kg')"
+                class="px-2.5 py-0.5 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+              >kg</button>
+              <button
+                type="button"
+                id="btn-weight-lbs"
+                onclick="toggleWeightUnit('lbs')"
+                class="px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition-all"
+              >lbs</button>
+            </div>
+          </div>
+          <div id="wrap-weight-kg">
+            <input
+              type="number"
+              id="inp-weight-kg"
+              placeholder="e.g. 70"
+              min="20"
+              max="300"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 font-mono-numbers"
+            />
+          </div>
+          <div id="wrap-weight-lbs" class="hidden">
+            <input
+              type="number"
+              id="inp-weight-lbs"
+              placeholder="e.g. 154"
+              min="40"
+              max="650"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-teal-400 font-mono-numbers"
+            />
+          </div>
+        </div>
+
+        <!-- Row 5: Target Phobia & Custom Phobia Input -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Target Phobia *</label>
+          <div class="flex items-center gap-2">
+            <select
+              id="inp-patient-phobia-select"
+              class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400 transition-colors"
+            >
+              <option value="Acrophobia (Heights)">Acrophobia (Heights)</option>
+              <option value="Arachnophobia (Spiders)">Arachnophobia (Spiders)</option>
+              <option value="Claustrophobia (Enclosed Spaces)">Claustrophobia (Enclosed Spaces)</option>
+            </select>
+            <button
+              type="button"
+              onclick="toggleCustomPhobiaInput()"
+              class="btn-capsule px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-teal-300 hover:bg-white/10 hover:border-teal-400"
+              title="Add Custom Phobia"
+            >
+              +
+            </button>
+          </div>
+          <!-- Custom phobia text input (hidden by default) -->
+          <div id="wrap-custom-phobia" class="hidden mt-2.5">
+            <input
+              type="text"
+              id="inp-custom-phobia"
+              placeholder="Type custom phobia (e.g. Glossophobia, Aerophobia)..."
+              class="w-full bg-[#0a1b26] border border-teal-500/40 rounded-xl px-4 py-2 text-sm text-teal-200 placeholder-slate-500 focus:outline-none focus:border-teal-400"
+            />
+          </div>
+        </div>
+
+        <!-- Row 6: Appointment Date -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Appointment Date *</label>
+          <input
+            type="date"
+            id="inp-patient-date"
+            required
+            class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400 font-mono-numbers"
+          />
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+          <button
+            type="button"
+            onclick="closePatientModal()"
+            class="btn-capsule px-5 py-2.5 rounded-xl text-xs font-bold uppercase font-mono-numbers text-slate-400 hover:text-white hover:bg-white/5"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            id="btn-patient-modal-submit"
+            class="btn-capsule px-6 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-bold text-xs uppercase font-mono-numbers tracking-wide shadow-[0_0_20px_rgba(43,240,175,0.4)]"
+          >
+            Save Patient Profile
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- MODAL 2: PRE-SESSION SAFETY CHECKLIST (Pre-Flight Screening)        -->
+  <!-- ================================================================== -->
+  <div id="pre-session-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md overflow-y-auto">
+    <div class="glass-card max-w-2xl w-full p-6 sm:p-8 my-8 border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between pb-4 mb-6 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shadow-[0_0_15px_rgba(43,240,175,0.3)]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-xl font-bold text-white">Pre-Flight Safety Checklist</h3>
+              <span class="text-[10px] font-mono-numbers uppercase tracking-wider font-bold px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40">
+                CLINICAL READINESS
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Subject: <span id="pre-session-patient-name" class="font-mono-numbers text-teal-300 font-semibold">Elena Rostova</span> · Mandatory Autonomic Screening
+            </p>
+          </div>
+        </div>
+
+        <button
+          onclick="closePreSessionModal()"
+          class="btn-capsule p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Checklist Questions List -->
+      <div class="space-y-3 mb-6">
+
+        <!-- Question 1: Coffee today -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+          <span class="text-xs sm:text-sm text-slate-200 font-medium">1. Did you drink coffee today?</span>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers">
+            <button
+              type="button"
+              id="btn-pre-coffee-today-no"
+              onclick="setChecklistAnswer('coffee_today', false)"
+              class="checklist-btn px-3 py-1 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-pre-coffee-today-yes"
+              onclick="setChecklistAnswer('coffee_today', true)"
+              class="checklist-btn px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+        <!-- Question 2: Coffee within last hour -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+          <span class="text-xs sm:text-sm text-slate-200 font-medium">2. Did you drink coffee within the last hour?</span>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers">
+            <button
+              type="button"
+              id="btn-pre-coffee-hour-no"
+              onclick="setChecklistAnswer('coffee_hour', false)"
+              class="checklist-btn px-3 py-1 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-pre-coffee-hour-yes"
+              onclick="setChecklistAnswer('coffee_hour', true)"
+              class="checklist-btn px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+        <!-- Question 3: Sports today -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+          <span class="text-xs sm:text-sm text-slate-200 font-medium">3. Did you do any sports today?</span>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers">
+            <button
+              type="button"
+              id="btn-pre-sports-today-no"
+              onclick="setChecklistAnswer('sports_today', false)"
+              class="checklist-btn px-3 py-1 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-pre-sports-today-yes"
+              onclick="setChecklistAnswer('sports_today', true)"
+              class="checklist-btn px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+        <!-- Question 4: Smoker -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+          <span class="text-xs sm:text-sm text-slate-200 font-medium">4. Are you a smoker?</span>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers">
+            <button
+              type="button"
+              id="btn-pre-smoker-no"
+              onclick="setChecklistAnswer('smoker', false)"
+              class="checklist-btn px-3 py-1 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-pre-smoker-yes"
+              onclick="setChecklistAnswer('smoker', true)"
+              class="checklist-btn px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+        <!-- Question 5: Smoke within last hour -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+          <span class="text-xs sm:text-sm text-slate-200 font-medium">5. Did you smoke within the last hour?</span>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers">
+            <button
+              type="button"
+              id="btn-pre-smoke-hour-no"
+              onclick="setChecklistAnswer('smoke_hour', false)"
+              class="checklist-btn px-3 py-1 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-pre-smoke-hour-yes"
+              onclick="setChecklistAnswer('smoke_hour', true)"
+              class="checklist-btn px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+        <!-- Question 6: Feel ill today -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+          <span class="text-xs sm:text-sm text-slate-200 font-medium">6. Do you feel ill today?</span>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers">
+            <button
+              type="button"
+              id="btn-pre-ill-today-no"
+              onclick="setChecklistAnswer('ill_today', false)"
+              class="checklist-btn px-3 py-1 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-pre-ill-today-yes"
+              onclick="setChecklistAnswer('ill_today', true)"
+              class="checklist-btn px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Clinical Advisory Notice -->
+      <div class="p-3.5 rounded-xl bg-teal-500/10 border border-teal-500/20 text-xs text-teal-200 flex items-center gap-2.5 mb-6">
+        <span class="text-base">ℹ️</span>
+        <span>Autonomic stimulant responses (caffeine, nicotine, rigorous exercise) will be recorded in the trial log to normalize baseline stress calibration.</span>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+        <button
+          type="button"
+          onclick="closePreSessionModal()"
+          class="btn-capsule px-5 py-2.5 rounded-xl text-xs font-bold uppercase font-mono-numbers text-slate-400 hover:text-white hover:bg-white/5"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          onclick="confirmAndLaunchSession()"
+          class="btn-capsule flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-bold text-xs uppercase font-mono-numbers tracking-wide shadow-[0_0_25px_rgba(43,240,175,0.4)]"
+        >
+          <span>Confirm &amp; Launch Session</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- MODAL 3: POST-SESSION CLINICAL DEBRIEF (Conclude Session Modal)     -->
+  <!-- ================================================================== -->
+  <div id="post-session-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md overflow-y-auto">
+    <div class="glass-card max-w-2xl w-full p-6 sm:p-8 my-8 border border-teal-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.7)]">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between pb-4 mb-6 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-xl font-bold text-white">Post-Session Clinical Debrief</h3>
+              <span class="text-[10px] font-mono-numbers uppercase tracking-wider font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                TRIAL CONCLUDED
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Subject: <span id="post-session-patient-name" class="font-mono-numbers text-teal-300 font-semibold">Elena Rostova</span> · Psychometrics &amp; Habituation Dossier
+            </p>
+          </div>
+        </div>
+
+        <button
+          onclick="closePostSessionModal()"
+          class="btn-capsule p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10"
+          title="Return to Dashboard"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Debrief Questions -->
+      <div class="space-y-4 mb-6">
+
+        <!-- Question 1: Cybersickness / Nausea -->
+        <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="text-sm font-semibold text-slate-200">1. VR-Induced Nausea / Cybersickness</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Did the patient experience simulator-induced dizziness, disorientation, or nausea?</p>
+          </div>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers shrink-0">
+            <button
+              type="button"
+              id="btn-debrief-nausea-no"
+              onclick="setDebriefAnswer('nausea', false)"
+              class="debrief-btn px-3.5 py-1.5 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >No</button>
+            <button
+              type="button"
+              id="btn-debrief-nausea-yes"
+              onclick="setDebriefAnswer('nausea', true)"
+              class="debrief-btn px-3.5 py-1.5 rounded-md text-slate-400 hover:text-white transition-all"
+            >Yes</button>
+          </div>
+        </div>
+
+        <!-- Question 2: Completed Exposure -->
+        <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="text-sm font-semibold text-slate-200">2. Exposure Protocol Completion</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Was the patient able to complete the targeted exposure progression?</p>
+          </div>
+          <div class="inline-flex rounded-lg p-0.5 bg-black/40 border border-white/10 text-xs font-mono-numbers shrink-0">
+            <button
+              type="button"
+              id="btn-debrief-completed-yes"
+              onclick="setDebriefAnswer('completed', true)"
+              class="debrief-btn px-3.5 py-1.5 rounded-md bg-teal-500/20 text-teal-300 font-bold transition-all"
+            >Yes</button>
+            <button
+              type="button"
+              id="btn-debrief-completed-no"
+              onclick="setDebriefAnswer('completed', false)"
+              class="debrief-btn px-3.5 py-1.5 rounded-md text-slate-400 hover:text-white transition-all"
+            >No</button>
+          </div>
+        </div>
+
+        <!-- Question 3: Clinical Assessment Dropdown -->
+        <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+          <label class="block text-sm font-semibold text-slate-200 mb-1.5">3. Overall Clinical Assessment *</label>
+          <select
+            id="inp-debrief-assessment"
+            class="w-full bg-[#0a1b26] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-teal-400 transition-colors font-mono-numbers"
+          >
+            <option value="Tolerated Well">Tolerated Well — Progressive Autonomic Habituation</option>
+            <option value="Mild Aversion">Mild Aversion — Sub-threshold Distress with Titrated Recovery</option>
+            <option value="Premature Termination">Premature Termination — Acute Stress Threshold Exceeded</option>
+          </select>
+        </div>
+
+        <!-- Clinical Notes (Optional textarea) -->
+        <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">4. Clinician Observations &amp; Next Steps</label>
+          <textarea
+            id="inp-debrief-notes"
+            rows="2"
+            placeholder="Document habituation remarks, heart rate recovery trajectory, or next session exposure goals..."
+            class="w-full bg-[#0a1b26] border border-white/10 rounded-xl p-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-400"
+          ></textarea>
+        </div>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+        <button
+          type="button"
+          onclick="closePostSessionModal()"
+          class="btn-capsule px-5 py-2.5 rounded-xl text-xs font-bold uppercase font-mono-numbers text-slate-400 hover:text-white hover:bg-white/5"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          onclick="saveAndEndSession()"
+          class="btn-capsule flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-bold text-xs uppercase font-mono-numbers tracking-wide shadow-[0_0_25px_rgba(43,240,175,0.4)]"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+          </svg>
+          <span>Save &amp; End Session</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ################################################################## -->
+  <!-- SECTION C: THE CLINICAL VR DASHBOARD (Full-Width Natural Grid)     -->
+  <!-- ################################################################## -->
+  <section id="section-dashboard" class="hidden min-h-screen w-full px-6 py-6 flex flex-col gap-6 relative z-10">
+
+    <!-- Top Navigation & Return Bar -->
+    <div class="flex items-center justify-between pb-2 border-b border-white/5">
+      <button
+        onclick="exitDashboardToCRUD()"
+        class="btn-capsule flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold font-mono-numbers text-slate-300 hover:text-white hover:bg-white/10 hover:border-teal-400/50"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        <span>Patient Directory</span>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono-numbers text-slate-400">Current Session Target:</span>
+        <span id="patient-display-phobia" class="text-xs font-bold font-mono-numbers px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/40">
+          Acrophobia (Heights)
+        </span>
+      </div>
+    </div>
+
+    <!-- SENSOR FAULT / BEAUTIFUL SCENERY WARNING BANNER -->
+    <div
+      id="sensor-alert-banner"
+      class="hidden transition-all duration-500 ease-out p-4 md:p-5 rounded-2xl bg-rose-500/15 border border-rose-500/40 text-rose-200 backdrop-blur-2xl shadow-[0_0_30px_rgba(244,63,94,0.3)] animate-pulse"
+    >
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/25 border border-rose-500/40 flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-rose-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+          </div>
+          <div>
+            <h4 class="text-sm font-extrabold tracking-wide text-white uppercase font-mono-numbers">
+              ⚠️ SENSOR FAULT DETECTED — FALLBACK TO BEAUTIFUL SCENERY ACTIVE
+            </h4>
+            <p class="text-xs text-rose-200/90 mt-0.5">
+              Electrode disconnection or abnormal biosignals (HR &lt; 40 BPM or EDA &le; 0.0 µS). Patient automatically routed to safe environment.
+            </p>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-bold font-mono-numbers bg-rose-500/30 border border-rose-400 text-rose-100">
+          PROTECTION ACTIVE
+        </span>
+      </div>
+    </div>
+
+    <!-- HEADER & CLINICAL HERO METRIC BAR (Injected with selected patient) -->
     <header class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
       
       <!-- Brand & Platform Identity -->
       <div class="flex items-center gap-4">
-        <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-400/20 via-cyan-500/20 to-indigo-600/30 border border-teal-400/30 shadow-[0_0_20px_rgba(43,240,175,0.2)]">
+        <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-400/20 via-cyan-500/20 to-indigo-600/30 border border-teal-400/30 shadow-[0_0_20px_rgba(43,240,175,0.25)]">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-teal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M9.75 3.75A6 6 0 0 1 21 9.75c0 2.19-.74 4.21-2 5.81V18a2.25 2.25 0 0 1-2.25 2.25h-9A2.25 2.25 0 0 1 5.5 18v-2.44A9.72 9.72 0 0 1 3.75 9.75 6 6 0 0 1 9.75 3.75Z" />
@@ -165,26 +949,55 @@
             <h1 class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-teal-200 bg-clip-text text-transparent">
               Liber8
             </h1>
-            <span class="px-2 py-0.5 text-[10px] uppercase font-bold tracking-widest text-teal-300 bg-teal-500/10 border border-teal-500/20 rounded-full">
-              CLINICAL v2.0
+            <span class="px-2.5 py-0.5 text-[10px] uppercase font-bold tracking-widest text-teal-300 bg-teal-500/10 border border-teal-500/20 rounded-full font-mono-numbers">
+              LIVE VR TRIAL
             </span>
           </div>
-          <p class="text-xs text-slate-400 font-medium">VR Exposure Therapy · Biometric Biofeedback Console</p>
+          <p class="text-xs text-slate-400 font-medium">VR Exposure Therapy · Biometric Closed-Loop Biofeedback</p>
         </div>
       </div>
 
-      <!-- Patient Profile Hero Card -->
-      <div class="glass-card !p-4 flex flex-wrap items-center gap-5 sm:gap-6">
+      <!-- Active Patient Profile Hero Card -->
+      <div class="glass-card !p-4 flex flex-wrap items-center gap-4 sm:gap-6">
         
-        <!-- Subject Avatar & ID -->
+        <!-- Subject Avatar & Injected Name/Details -->
         <div class="flex items-center gap-3">
-          <div class="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-md shadow-cyan-900/40">
-            <span>S</span>
+          <div id="patient-avatar-box" class="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-md shadow-cyan-900/40">
+            <span id="patient-avatar-initials">S</span>
             <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#06141d] animate-pulse shadow-[0_0_10px_#10b981]"></span>
           </div>
           <div>
-            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Patient Subject</p>
-            <p class="text-sm font-bold text-white font-mono-numbers tracking-wide">WESAD-S15</p>
+            <p id="patient-display-name" class="text-sm font-bold text-white font-mono-numbers tracking-wide">Subject WESAD-S15</p>
+            <p id="patient-display-details" class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold font-mono-numbers">26 YRS · MALE · RIGHT HAND</p>
+          </div>
+        </div>
+
+        <div class="hidden sm:block h-8 w-px bg-white/10"></div>
+
+        <!-- Patient Live Subjective Feedback Badge -->
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Subjective State</p>
+          <span
+            id="patient-feedback-badge"
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-mono-numbers bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 transition-all duration-300"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Stable
+          </span>
+        </div>
+
+        <div class="hidden sm:block h-8 w-px bg-white/10"></div>
+
+        <!-- Baseline Stress Indicator Card -->
+        <div>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Resting Baseline</p>
+          <div class="flex items-center gap-2">
+            <span
+              id="baseline-value"
+              class="text-xs font-bold text-teal-300 font-mono-numbers bg-teal-500/10 border border-teal-500/20 px-2.5 py-0.5 rounded-lg"
+            >
+              20.0% (Calibrating...)
+            </span>
           </div>
         </div>
 
@@ -192,26 +1005,15 @@
 
         <!-- Session Elapsed Timer -->
         <div>
-          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Session Elapsed</p>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Session Clock</p>
           <p id="elapsed-time" class="text-sm font-bold text-cyan-300 font-mono-numbers">00:00</p>
         </div>
 
         <div class="hidden sm:block h-8 w-px bg-white/10"></div>
 
-        <!-- VR Link Status -->
+        <!-- Control Mode Indicator -->
         <div>
-          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">VR Telemetry Link</p>
-          <div class="flex items-center gap-2">
-            <span id="live-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_#10b981]"></span>
-            <span id="vr-status" class="text-xs font-bold text-emerald-400 font-mono-numbers">SYNCHRONIZED</span>
-          </div>
-        </div>
-
-        <div class="hidden sm:block h-8 w-px bg-white/10"></div>
-
-        <!-- Mode Badge Indicator -->
-        <div>
-          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Control Mode</p>
+          <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">Protocol Mode</p>
           <span id="mode-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-mono-numbers bg-teal-500/15 border border-teal-500/40 text-teal-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
             <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span>
             AUTO
@@ -223,22 +1025,21 @@
     </header>
 
     <!-- ================================================================== -->
-    <!-- ROW 1 — LIVE TELEMETRY CARDS (Heart Rate, EDA, AI Stress)          -->
+    <!-- ROW 1 — LIVE TELEMETRY CARDS (Full-Width Responsive Grid)          -->
     <!-- ================================================================== -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
 
       <!-- 1. HEART RATE (BPM) CARD -->
-      <div class="glass-card relative overflow-hidden flex flex-col justify-between">
-        <!-- Background subtle glow -->
+      <div class="glass-card relative overflow-hidden min-h-[160px] w-full p-6 flex flex-col justify-between break-words">
         <div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
         <div class="flex items-start justify-between relative z-10">
           <div>
             <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">Heart Rate</span>
-            <p class="text-xs text-slate-500 mt-0.5">Cardiac Frequency</p>
+            <p class="text-xs text-slate-500 mt-0.5">ECG / Optical Plethysmograph</p>
           </div>
           <!-- Animated Heart Icon -->
-          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
             <svg id="heart-icon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#2bf0af] anim-heartbeat" viewBox="0 0 24 24" fill="currentColor">
               <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
             </svg>
@@ -246,37 +1047,35 @@
         </div>
 
         <!-- Metric Reading -->
-        <div class="my-3 flex items-baseline gap-2 relative z-10">
+        <div class="my-2 flex items-baseline gap-2 relative z-10">
           <span id="hr-value" class="font-mono-numbers text-5xl font-bold text-[#2bf0af] drop-shadow-[0_0_12px_rgba(43,240,175,0.35)]">
             72
           </span>
           <span class="text-sm font-semibold text-emerald-400/80 font-mono-numbers">BPM</span>
         </div>
 
-        <!-- Custom SVG Cardiac Waveform -->
+        <!-- Cardiac Waveform SVG Graphic -->
         <div class="relative z-10 mt-1">
-          <svg class="w-full h-9 text-[#2bf0af] opacity-60 filter drop-shadow-[0_0_4px_rgba(43,240,175,0.4)]" viewBox="0 0 220 36" fill="none">
+          <svg class="w-full h-9 text-[#2bf0af] opacity-65 filter drop-shadow-[0_0_4px_rgba(43,240,175,0.4)]" viewBox="0 0 220 36" fill="none">
             <path d="M0 18 H40 L48 6 L56 30 L64 10 L72 24 L80 18 H120 L128 6 L136 30 L144 10 L152 24 L160 18 H220" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-1">
-            <span>Resting: 60-80</span>
-            <span class="text-emerald-400">Normal Range</span>
+            <span>Resting: 60-80 BPM</span>
+            <span class="text-emerald-400">R-Peak Synchronized</span>
           </div>
         </div>
       </div>
 
       <!-- 2. EDA (µS) CARD -->
-      <div class="glass-card relative overflow-hidden flex flex-col justify-between">
-        <!-- Background subtle glow -->
+      <div class="glass-card relative overflow-hidden min-h-[160px] w-full p-6 flex flex-col justify-between break-words">
         <div class="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
         <div class="flex items-start justify-between relative z-10">
           <div>
-            <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">EDA / Galvanic</span>
-            <p class="text-xs text-slate-500 mt-0.5">Skin Conductance</p>
+            <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">EDA Conductance</span>
+            <p class="text-xs text-slate-500 mt-0.5">Sympathetic Galvanic Response</p>
           </div>
-          <!-- Waveform Icon -->
-          <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#fbbf24]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
             </svg>
@@ -284,45 +1083,43 @@
         </div>
 
         <!-- Metric Reading -->
-        <div class="my-3 flex items-baseline gap-2 relative z-10">
+        <div class="my-2 flex items-baseline gap-2 relative z-10">
           <span id="eda-value" class="font-mono-numbers text-5xl font-bold text-[#fbbf24] drop-shadow-[0_0_12px_rgba(251,191,36,0.35)]">
             2.50
           </span>
           <span class="text-sm font-semibold text-amber-300/80 font-mono-numbers">µS</span>
         </div>
 
-        <!-- Stylized Conductance Waveform -->
+        <!-- Phasic Conductance Waveform SVG Graphic -->
         <div class="relative z-10 mt-1">
-          <svg class="w-full h-9 text-[#fbbf24] opacity-60 filter drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]" viewBox="0 0 220 36" fill="none">
+          <svg class="w-full h-9 text-[#fbbf24] opacity-65 filter drop-shadow-[0_0_4px_rgba(251,191,36,0.4)]" viewBox="0 0 220 36" fill="none">
             <path d="M0 24 C25 24 40 8 70 12 C100 16 115 28 145 20 C170 14 195 18 220 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
           <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-1">
-            <span>Baseline: 1.0 - 5.0</span>
-            <span class="text-amber-400">Phasic Responsive</span>
+            <span>Range: 1.0 - 5.0 µS</span>
+            <span class="text-amber-400">Tonic Baseline Active</span>
           </div>
         </div>
       </div>
 
       <!-- 3. AI STRESS SCORE CARD -->
-      <div id="stress-card" class="glass-card relative overflow-hidden flex flex-col justify-between">
-        <!-- Background subtle glow -->
+      <div id="stress-card" class="glass-card relative overflow-hidden min-h-[160px] w-full p-6 flex flex-col justify-between break-words">
         <div class="absolute -top-12 -right-12 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
         <div class="flex items-start justify-between relative z-10">
           <div>
             <span class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold">AI Stress Score</span>
-            <p class="text-xs text-slate-500 mt-0.5">Fusion Biomarker Model</p>
+            <p class="text-xs text-slate-500 mt-0.5">Fusion Biomarker Classification</p>
           </div>
-          <!-- Arc / Neural Badge Icon -->
-          <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#ff5c5c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
             </svg>
           </div>
         </div>
 
-        <!-- Metric Reading & Visual Arc Sweep -->
-        <div class="my-3 flex items-center justify-between relative z-10">
+        <!-- Metric Reading & Circular Radial Sweep Arc -->
+        <div class="my-2 flex items-center justify-between relative z-10">
           <div class="flex items-baseline gap-2">
             <span id="stress-value" class="font-mono-numbers text-5xl font-bold text-[#ff5c5c] drop-shadow-[0_0_12px_rgba(255,92,92,0.35)]">
               0.20
@@ -349,8 +1146,8 @@
           </div>
         </div>
 
-        <!-- Threshold context line -->
-        <div class="relative z-10 flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers">
+        <!-- Status context row -->
+        <div class="relative z-10 flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-1">
           <span>Panic Floor: &ge; 0.85</span>
           <span id="stress-status-tag" class="text-teal-400 font-semibold">STABLE</span>
         </div>
@@ -359,74 +1156,129 @@
     </div>
 
     <!-- ================================================================== -->
-    <!-- ROW 2 — VIRTUAL ENVIRONMENT & EXPOSURE LEVEL BANNER                -->
+    <!-- ROW 2 — VR VIDEO FEEDPORT (Unity Live 16:9 POV Monitor)            -->
     <!-- ================================================================== -->
-    <div class="glass-card flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-4 px-6">
-      
-      <div class="flex items-center gap-4">
-        <div class="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-300 shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-        </div>
-        <div>
-          <p class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">Current Exposure Level</p>
-          <p id="level-text" class="text-xl md:text-2xl font-bold tracking-tight text-white font-mono-numbers">
-            Baseline
-          </p>
-        </div>
-      </div>
+    <div
+      id="vr-viewport-card"
+      class="glass-card relative overflow-hidden border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] transition-all duration-500 !p-0 w-full"
+    >
+      <!-- 16:9 Aspect Ratio Video Monitor Container -->
+      <div class="relative w-full aspect-[16/9] max-h-[500px] bg-black/80 rounded-2xl overflow-hidden flex items-center justify-center">
+        
+        <!-- Live Video Feed Element (Autoplay, Loop, Muted, Playsinline) -->
+        <video
+          id="vr-live-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="w-full h-full object-cover rounded-2xl transition-all duration-700"
+          poster="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80"
+        >
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+        </video>
 
-      <!-- Environment Hierarchy Stage Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto py-1 max-w-full">
-        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-teal-500/20 text-teal-300 border border-teal-500/40">Baseline</span>
-        <span class="text-slate-600 text-xs">&rarr;</span>
-        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 1</span>
-        <span class="text-slate-600 text-xs">&rarr;</span>
-        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 2</span>
-        <span class="text-slate-600 text-xs">&rarr;</span>
-        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 3</span>
-        <span class="text-slate-600 text-xs">&rarr;</span>
-        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 4</span>
-        <span class="text-slate-600 text-xs">&rarr;</span>
-        <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">Lvl 5</span>
-      </div>
+        <!-- Dynamic Ambient Viewport Glow Backdrop -->
+        <div
+          id="vr-viewport-glow"
+          class="absolute inset-0 bg-gradient-to-t from-[#06141d]/90 via-transparent to-transparent pointer-events-none z-10"
+        ></div>
 
+        <!-- TOP OVERLAY: Live Video Header & Pulsing "LIVE: UNITY RENDERING" Badge -->
+        <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-20 pointer-events-none">
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-slate-200 font-mono-numbers text-xs">
+            <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+            <span>HMD STEREO PASSTHROUGH · 90 FPS</span>
+          </div>
+
+          <!-- Pulsing Red Live Badge -->
+          <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-600/80 backdrop-blur-md border border-red-400 text-white font-mono-numbers text-xs font-extrabold shadow-[0_0_15px_#ef4444]">
+            <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+            <span>LIVE: UNITY RENDERING</span>
+          </div>
+        </div>
+
+        <!-- High-Tech Corner Viewfinder Brackets -->
+        <div class="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-teal-400/50 pointer-events-none z-20"></div>
+        <div class="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-teal-400/50 pointer-events-none z-20"></div>
+        <div class="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-teal-400/50 pointer-events-none z-20"></div>
+        <div class="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-teal-400/50 pointer-events-none z-20"></div>
+
+        <!-- BOTTOM OVERLAY: Dynamic Environment Status & Hierarchy Pills -->
+        <div class="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 z-20">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span id="vr-environment-tag" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold font-mono-numbers uppercase tracking-wider bg-emerald-500/30 text-emerald-300 border border-emerald-400/50 backdrop-blur-md">
+                SAFE ROOM ACTIVE
+              </span>
+              <span id="stepup-recommendation-badge" class="hidden text-[10px] font-bold font-mono-numbers uppercase px-2 py-0.5 rounded-full bg-cyan-500/30 text-cyan-200 border border-cyan-400/50 backdrop-blur-md animate-pulse">
+                ★ Ready for Step Up
+              </span>
+            </div>
+            <h2 id="vr-environment-title" class="text-xl sm:text-2xl font-extrabold font-mono-numbers text-[#2bf0af] drop-shadow-[0_0_12px_rgba(43,240,175,0.6)]">
+              Safe Room: Beautiful Scenery
+            </h2>
+            <p id="vr-environment-desc" class="text-xs text-slate-300 drop-shadow">
+              Protective Biofeedback Fallback Active · Calming Alpine Meadow Soundscape
+            </p>
+          </div>
+
+          <!-- Hidden legacy level-text span for backwards compatibility -->
+          <span id="level-text" class="hidden font-mono-numbers">Baseline</span>
+
+          <!-- Environmental Stage Hierarchy Pills -->
+          <div class="flex items-center gap-1.5 overflow-x-auto py-1 max-w-full backdrop-blur-md bg-black/40 p-1.5 rounded-xl border border-white/10">
+            <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-teal-500/20 text-teal-300 border border-teal-500/40">Baseline</span>
+            <span class="text-slate-500 text-xs">&rarr;</span>
+            <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">L1: Lobby</span>
+            <span class="text-slate-500 text-xs">&rarr;</span>
+            <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">L2: Balcony</span>
+            <span class="text-slate-500 text-xs">&rarr;</span>
+            <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">L3: Walkway</span>
+            <span class="text-slate-500 text-xs">&rarr;</span>
+            <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">L4: Edge</span>
+            <span class="text-slate-500 text-xs">&rarr;</span>
+            <span class="stage-pill text-[10px] font-bold font-mono-numbers px-2.5 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/5">L5: Deck</span>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- ================================================================== -->
-    <!-- ROW 3 — REAL-TIME TRACKING (CHARTS)                                -->
+    <!-- ROW 3 — REAL-TIME DUAL BIOMETRIC CHARTS (Full-Width Grid)          -->
     <!-- ================================================================== -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full">
 
-      <!-- Heart Rate Chart Panel -->
-      <div class="glass-card glass-panel-chart flex flex-col justify-between">
+      <!-- Heart Rate Live Chart Panel -->
+      <div class="glass-card glass-panel-chart flex flex-col justify-between w-full">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#2bf0af] shadow-[0_0_8px_#2bf0af]"></span>
-            <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">HEART RATE (BPM)</span>
+            <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">HEART RATE STREAM (BPM)</span>
           </div>
           <span class="text-[10px] text-slate-400 font-mono-numbers bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
-            Rolling 60s
+            Rolling 60s Buffer
           </span>
         </div>
-        <div class="relative h-52 w-full">
+        <div class="relative h-60 w-full">
           <canvas id="hr-chart"></canvas>
         </div>
       </div>
 
-      <!-- EDA Chart Panel -->
-      <div class="glass-card glass-panel-chart flex flex-col justify-between">
+      <!-- EDA Live Chart Panel -->
+      <div class="glass-card glass-panel-chart flex flex-col justify-between w-full">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#fbbf24] shadow-[0_0_8px_#fbbf24]"></span>
-            <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">ELECTRODERMAL ACTIVITY (µS)</span>
+            <span class="text-xs uppercase tracking-widest text-slate-300 font-bold">EDA CONDUCTANCE STREAM (µS)</span>
           </div>
           <span class="text-[10px] text-slate-400 font-mono-numbers bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
-            Rolling 60s
+            Rolling 60s Buffer
           </span>
         </div>
-        <div class="relative h-52 w-full">
+        <div class="relative h-60 w-full">
           <canvas id="eda-chart"></canvas>
         </div>
       </div>
@@ -436,61 +1288,60 @@
     <!-- ================================================================== -->
     <!-- ROW 4 — 5-SECOND SUSTAINED PANIC DETECTOR (Safety Timer)           -->
     <!-- ================================================================== -->
-    <div class="glass-card p-5">
+    <div class="glass-card p-6 w-full">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+          <div class="w-8 h-8 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </div>
           <div>
             <h3 class="text-xs uppercase tracking-widest text-slate-200 font-bold">5-Second Sustained Panic Detector</h3>
-            <p class="text-[11px] text-slate-400">Automatic failsafe intervention trigger (&ge; 0.85 stress score)</p>
+            <p class="text-[11px] text-slate-400">Automated Step Down triggered if Stress Score &ge; 0.85 for 5 consecutive seconds</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Duration:</span>
-          <span id="panic-seconds-label" class="font-mono-numbers text-sm font-bold text-slate-200 bg-white/5 border border-white/10 px-2.5 py-1 rounded-lg">
+          <span class="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Sustained Duration:</span>
+          <span id="panic-seconds-label" class="font-mono-numbers text-sm font-bold text-slate-200 bg-white/5 border border-white/10 px-3 py-1 rounded-xl">
             0 / 5s
           </span>
         </div>
       </div>
 
       <!-- Sleek Empty State Track -->
-      <div class="h-3.5 w-full bg-[#ffffff0c] rounded-full overflow-hidden p-0.5 border border-white/5 shadow-inner">
+      <div class="h-4 w-full bg-[#ffffff0c] rounded-full overflow-hidden p-0.5 border border-white/5 shadow-inner">
         <!-- Glowing Multi-Layered Coral/Red-Orange Gradient Indicator -->
         <div
           id="panic-bar"
-          class="h-full rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-red-600 shadow-[0_0_12px_#ef4444] transition-all duration-300 ease-out"
+          class="h-full rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-red-600 shadow-[0_0_15px_#ef4444] transition-all duration-300 ease-out"
           style="width: 0%;"
         ></div>
       </div>
 
-      <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-2">
-        <span>0s (Normal)</span>
-        <span class="text-amber-400/80">3s (Warning)</span>
-        <span class="text-red-400 font-semibold">5s (Auto Step Down Triggered)</span>
+      <div class="flex items-center justify-between text-[10px] text-slate-500 font-mono-numbers mt-2.5">
+        <span>0s (Normal Exposure)</span>
+        <span class="text-amber-400/80">3s (Warning Threshold)</span>
+        <span class="text-red-400 font-semibold">5s (Automated Step Down Failsafe)</span>
       </div>
     </div>
 
     <!-- ================================================================== -->
-    <!-- ROW 5 — CLINICIAN CONTROLS (Glossy Capsules & Toggle)             -->
+    <!-- ROW 5 — CLINICIAN INTERVENTION CONSOLE (Capsules & Controls)       -->
     <!-- ================================================================== -->
-    <div class="glass-card p-6">
+    <div class="glass-card p-6 md:p-7 w-full">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-5 pb-4 border-b border-white/5">
         <div>
           <h2 class="text-sm uppercase tracking-widest text-white font-bold">Clinician Intervention Console</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Authoritative overrides and virtual exposure controls</p>
+          <p class="text-xs text-slate-400 mt-0.5">Direct manual overrides, progressive titration, and patient safe-room routing</p>
         </div>
 
-        <!-- AUTO MODE Toggle Slider Style Button -->
+        <!-- AUTO / CLINICIAN Protocol Toggle Slider -->
         <div class="flex items-center gap-3">
-          <span class="text-xs font-semibold text-slate-400">System Mode:</span>
+          <span class="text-xs font-semibold text-slate-400">Control Mode:</span>
           <button
             id="mode-toggle"
-            onclick="sendCommand('toggle_mode')"
-            class="relative inline-flex items-center gap-2.5 px-4 py-2 rounded-full font-mono-numbers text-xs font-bold transition-all duration-300 bg-[#0c2838] border border-cyan-400/40 text-cyan-200 shadow-[0_0_15px_#06b6d4] hover:border-cyan-300"
+            class="btn-capsule relative inline-flex items-center gap-2.5 px-4 py-2 rounded-full font-mono-numbers text-xs font-bold transition-all duration-300 bg-[#0c2838] border border-cyan-400/40 text-cyan-200 shadow-[0_0_15px_#06b6d4] hover:border-cyan-300"
           >
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#06b6d4]"></span>
             <span id="mode-toggle-text">AUTO MODE: ON</span>
@@ -498,13 +1349,12 @@
         </div>
       </div>
 
-      <!-- Action Buttons Grid / Capsules -->
-      <div class="flex flex-wrap items-center gap-3">
+      <!-- Action Buttons Grid -->
+      <div class="flex flex-wrap items-center gap-3 w-full">
 
-        <!-- STEP UP Button -->
+        <!-- STEP UP Button (supports Soft Teal Aura on Recommendation) -->
         <button
           id="btn-stepup"
-          onclick="sendCommand('step_up')"
           class="btn-capsule flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers
                  bg-white/5 border border-white/20 text-slate-100 hover:bg-white/10 hover:border-white/40 shadow-sm"
         >
@@ -517,7 +1367,6 @@
         <!-- STEP DOWN Button -->
         <button
           id="btn-stepdown"
-          onclick="sendCommand('step_down')"
           class="btn-capsule flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers
                  bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 hover:border-emerald-400/50 shadow-sm"
         >
@@ -527,190 +1376,47 @@
           Step Down
         </button>
 
-        <!-- PAUSE / INTERVENE Button -->
+        <!-- PAUSE / SAFE ROOM FALLBACK Button -->
         <button
           id="btn-pause"
-          onclick="handlePauseResume()"
           class="btn-capsule flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers
                  bg-rose-500/10 border border-rose-500/40 text-rose-300 hover:bg-rose-500/20 hover:border-rose-400 hover:shadow-[0_0_15px_rgba(244,63,94,0.3)] shadow-sm"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
           </svg>
-          <span id="pause-btn-label">Pause / Intervene</span>
+          <span id="pause-btn-label">Pause / Safe Room</span>
         </button>
 
-        <!-- END SESSION Button -->
+        <!-- CONCLUDE SESSION Button (Triggers Post-Session Debrief Modal) -->
         <button
-          id="btn-end"
-          onclick="sendCommand('end_session')"
+          id="btn-conclude"
+          onclick="openPostSessionModal()"
           class="btn-capsule flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold tracking-wide uppercase font-mono-numbers ml-auto
                  bg-gradient-to-r from-red-600/30 to-rose-600/30 border border-red-500/50 text-red-200 hover:from-red-600/50 hover:to-rose-600/50 hover:border-red-400 hover:shadow-[0_0_18px_rgba(239,68,68,0.35)]"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 12.728M5.636 5.636a9 9 0 1 1 12.728 12.728M5.636 5.636 12 12m0 0 6.364 6.364" />
           </svg>
-          End Session
+          <span>Conclude Session</span>
         </button>
 
       </div>
     </div>
 
-    <!-- ================================================================== -->
-    <!-- POST-SESSION REPORT & DIGITAL STAI (Hidden Until Session Complete) -->
-    <!-- ================================================================== -->
-    <div
-      id="post-session-report"
-      class="hidden transition-all duration-700 ease-out transform opacity-0 translate-y-8"
-    >
-      <div class="glass-card border border-teal-500/30 shadow-[0_0_40px_rgba(6,182,212,0.15)] p-6 md:p-8">
-
-        <!-- Header -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shadow-[0_0_15px_rgba(43,240,175,0.25)]">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25Z" />
-              </svg>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <h2 class="text-xl font-bold text-white tracking-tight">Clinical Post-Session Report</h2>
-                <span class="text-[10px] font-mono-numbers uppercase tracking-wider font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                  SESSION CONCLUDED
-                </span>
-              </div>
-              <p class="text-xs text-slate-400">Subject: <span class="font-mono-numbers text-teal-300 font-semibold">WESAD-S15</span> · Digital STAI Assessment</p>
-            </div>
-          </div>
-
-          <div class="text-right">
-            <span class="text-xs text-slate-400 block">Report ID</span>
-            <span class="text-xs font-mono-numbers text-slate-200">#EXP-2026-S15-FINAL</span>
-          </div>
-        </div>
-
-        <p class="text-sm text-slate-300 my-5 leading-relaxed">
-          The exposure trial has terminated. Please document the patient’s psychological recovery status using the validated
-          <strong class="text-white">State-Trait Anxiety Inventory (STAI Form Y-1)</strong>.
-          Scale: <span class="text-teal-300 font-semibold">1 (Not at all)</span> to <span class="text-rose-300 font-semibold">4 (Very much so)</span>.
-        </p>
-
-        <!-- STAI Questionnaire Grid -->
-        <form id="stai-form" class="space-y-4" onsubmit="submitSTAI(event)">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-            <!-- Item 1 -->
-            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
-              <label class="block text-xs font-medium text-slate-300 mb-2">1. I feel calm.</label>
-              <select name="stai_1" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
-                <option value="">— Select Rating —</option>
-                <option value="1">1 — Not at all</option>
-                <option value="2">2 — Somewhat</option>
-                <option value="3">3 — Moderately so</option>
-                <option value="4">4 — Very much so</option>
-              </select>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
-              <label class="block text-xs font-medium text-slate-300 mb-2">2. I feel secure.</label>
-              <select name="stai_2" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
-                <option value="">— Select Rating —</option>
-                <option value="1">1 — Not at all</option>
-                <option value="2">2 — Somewhat</option>
-                <option value="3">3 — Moderately so</option>
-                <option value="4">4 — Very much so</option>
-              </select>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
-              <label class="block text-xs font-medium text-slate-300 mb-2">3. I feel tense.</label>
-              <select name="stai_3" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
-                <option value="">— Select Rating —</option>
-                <option value="1">1 — Not at all</option>
-                <option value="2">2 — Somewhat</option>
-                <option value="3">3 — Moderately so</option>
-                <option value="4">4 — Very much so</option>
-              </select>
-            </div>
-
-            <!-- Item 4 -->
-            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
-              <label class="block text-xs font-medium text-slate-300 mb-2">4. I feel strained.</label>
-              <select name="stai_4" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
-                <option value="">— Select Rating —</option>
-                <option value="1">1 — Not at all</option>
-                <option value="2">2 — Somewhat</option>
-                <option value="3">3 — Moderately so</option>
-                <option value="4">4 — Very much so</option>
-              </select>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
-              <label class="block text-xs font-medium text-slate-300 mb-2">5. I feel at ease.</label>
-              <select name="stai_5" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
-                <option value="">— Select Rating —</option>
-                <option value="1">1 — Not at all</option>
-                <option value="2">2 — Somewhat</option>
-                <option value="3">3 — Moderately so</option>
-                <option value="4">4 — Very much so</option>
-              </select>
-            </div>
-
-            <!-- Item 6 -->
-            <div class="glass-card !p-4 border border-white/5 bg-[#ffffff03]">
-              <label class="block text-xs font-medium text-slate-300 mb-2">6. I feel frightened.</label>
-              <select name="stai_6" class="w-full bg-[#0a1b26] border border-white/10 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 transition-colors">
-                <option value="">— Select Rating —</option>
-                <option value="1">1 — Not at all</option>
-                <option value="2">2 — Somewhat</option>
-                <option value="3">3 — Moderately so</option>
-                <option value="4">4 — Very much so</option>
-              </select>
-            </div>
-
-          </div>
-
-          <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
-            <button
-              type="submit"
-              class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-400 hover:to-cyan-500 text-slate-900 font-bold text-xs uppercase font-mono-numbers tracking-wide transition-all shadow-[0_0_20px_rgba(43,240,175,0.4)]"
-            >
-              Sign &amp; Archive Session Log
-            </button>
-          </div>
-        </form>
-
-        <!-- Submission confirmation banner -->
-        <div id="stai-submitted" class="hidden mt-5 p-4 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center gap-3">
-          <div class="w-6 h-6 rounded-full bg-teal-400 text-slate-900 flex items-center justify-center font-bold text-xs">✓</div>
-          <div>
-            <p class="text-xs font-bold text-teal-300 font-mono-numbers">SESSION CERTIFIED &amp; RECORD COMMITTED</p>
-            <p class="text-[11px] text-slate-400">Post-exposure STAI metrics appended to events.csv and session telemetry archive.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ================================================================== -->
-    <!-- FOOTER                                                               -->
-    <!-- ================================================================== -->
-    <footer class="text-center text-xs text-slate-500/80 py-2 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <!-- Dashboard Footer -->
+    <footer class="text-center text-xs text-slate-500/80 py-3 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
       <div class="flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
         <span>Liber8 VR Exposure Therapy Platform</span>
       </div>
-      <div>Subject: <span class="font-mono-numbers text-slate-400">WESAD-S15</span> · Real-Time Failsafe Engine Active</div>
+      <div>Nov 10 Committee Evaluation Suite · Clinical Failsafes Active</div>
       <div class="font-mono-numbers text-[11px]">Polling 1000ms</div>
     </footer>
 
-  </div>
+  </section>
 
-  <!-- JavaScript -->
+  <!-- JavaScript Application Entry Point -->
   <script src="/static/app.js"></script>
 </body>
 </html>
